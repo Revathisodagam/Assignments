@@ -1,0 +1,19 @@
+create table customer
+(
+id number(10) primary key,
+name varchar2(30),
+email varchar2(40),
+city varchar2(30)
+);
+
+insert into customer values(11,'Meher','meher@12.com','Hyderabad');
+insert into customer values(12,'Sakshi','sakshi@12.com','warangal');
+insert into customer values(13,'Mahi','mahi@12.com','Kakinada');
+insert into customer values(14,'Mohan','mohan@12.com','Karnataka');
+insert into customer values(15,'sashi','sashi@12.com','Kakinada');
+
+select * from customer;
+
+select name,email
+from customer
+where city = 'Kakinada';

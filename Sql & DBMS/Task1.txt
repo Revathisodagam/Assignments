@@ -1,0 +1,66 @@
+create table author
+(
+author_id number(10) primary key,
+name varchar2(30) not null
+);
+
+insert into author values(1,'Bloomsbury');
+insert into author values(2,'James Clear');
+insert into author values(3,'Shann');
+insert into author values(4,'John');
+insert into author values(5,'Hari');
+
+select * from author;
+
+create table books
+(
+books_id number(10) primary key,
+title varchar2(40) not null,
+status varchar2(40),
+author_id number(10),
+foreign key (author_id) references author (author_id) on delete set null
+);
+
+insert into books values(111,'Harry Potter and the Philosophers Stone','Available',1);
+insert into books values(101,'Atomic Habits','Not Available',2);
+insert into books values(112,'The girl on the train','Available',3);
+insert into books values(122,'Dont waste your life','Available',4);
+insert into books values(113,'To kill a Mockingbird','Not Available',5);
+
+select * from books;
+
+create table members
+(
+member_id number(10) primary key,
+name varchar2(30) not null,
+email varchar2(40) unique not null,
+phone_no number(10) unique
+);
+
+insert into members values(1001,'revathi','revathi@gmail.com',9322934567);
+insert into members values(1002,'Mahi','mahi@gmail.com',null);
+insert into members values(1003,'Rushi','rushi@gmail.com',9392910820);
+insert into members values(1004,'Rathod','rathod@gmail.com',9876512345);
+
+select * from members;
+
+create table categories
+(
+category_id number(10) primary key,
+book_id number(10),
+category varchar2(30) unique not null,
+foreign key(book_id) references books(books_id) on delete cascade
+);
+
+insert into categories values(101,111,'Fiction');
+insert into categories values(102,112,'Crime Thriller');
+insert into categories values(103,113,'Classic');
+insert into categories values(104,122,'Motivation');
+insert into categories values(105,101,'Education');
+
+select * from categories;
+
+select * from books 
+inner join
+categories
+on books.books_id=categories.book_id;

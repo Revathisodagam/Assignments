@@ -1,0 +1,42 @@
+create table customer
+(
+id number(10) primary key,
+name varchar2(30),
+email varchar2(40),
+city varchar2(30)
+);
+
+insert into customer values(11,'Meher','meher@12.com','Hyderabad');
+insert into customer values(12,'Sakshi','sakshi@12.com','warangal');
+insert into customer values(13,'Mahi','mahi@12.com','Kakinada');
+insert into customer values(14,'Mohan','mohan@12.com','Karnataka');
+insert into customer values(15,'sashi','sashi@12.com','Kakinada');
+
+select * from customer;
+
+create table orders
+(
+order_id number(10) primary key,
+order_item varchar2(30),
+id number(10),
+foreign key (id) references customer(id)
+);
+
+insert into orders values(132,'Phone',11);
+insert into orders values(157,'Buds',13);
+insert into orders values(1003,'books',12);
+insert into orders values(121,'pens',14);
+insert into orders values(1,'books',15);
+select * from orders;
+
+select * from customer
+inner join 
+ orders
+on customer.id=orders.id
+where customer.city='Kakinada';
+
+select * from customer
+left join 
+ orders
+on customer.id=orders.id
+where customer.city='Kakinada';
